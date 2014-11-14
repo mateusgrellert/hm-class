@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="94">
+<configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="source" name="0">
       <df name="App">
@@ -180,7 +180,7 @@
     <conf name="Default" type="0">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <platform>4</platform>
+        <platform>2</platform>
       </toolsSet>
       <compile>
         <compiledirpicklist>
@@ -200,8 +200,6 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
-        <gdb_signals>
-        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -217,8 +215,9 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BQSquare.cfg -f 3</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorses.cfg -f 3</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 3</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BasketballDrive.cfg -f 5</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 3</runcommand>
+        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BasketballDrive.cfg -f 5</runcommand>
         <rundir>bin</rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>

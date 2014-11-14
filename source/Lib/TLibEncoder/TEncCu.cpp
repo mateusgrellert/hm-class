@@ -228,7 +228,9 @@ Void TEncCu::compressCU( TComDataCU*& rpcCU )
   m_ppcBestCU[0]->initCU( rpcCU->getPic(), rpcCU->getAddr() );
   m_ppcTempCU[0]->initCU( rpcCU->getPic(), rpcCU->getAddr() );
   
-
+#if EN_COMPLEXITY_MANAGEMENT
+  TComClassifier::calcCTUSobel(m_ppcBestCU[0], rpcCU->getPic()->getPicYuvOrg());
+#endif
   
   // analysis of CU
   xCompressCU( m_ppcBestCU[0], m_ppcTempCU[0], 0 );

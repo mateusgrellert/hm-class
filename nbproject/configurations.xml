@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="94">
+<configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="source" name="0">
       <df name="App">
@@ -121,7 +121,7 @@
           <buildCommandWorkingDir>build/linux</buildCommandWorkingDir>
           <buildCommand>${MAKE} -j16 -f makefile</buildCommand>
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
-          <executablePath>bin/TAppEncoderStaticd</executablePath>
+          <executablePath>bin/TAppEncoderStatic</executablePath>
           <cTool>
             <incDir>
               <pElem>source/Lib</pElem>
@@ -301,86 +301,60 @@
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComInterpolationFilter.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComLoopFilter.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComMotionInfo.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComPattern.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComPic.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComPicSym.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComPicYuv.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComPicYuvMD5.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComPrediction.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComRdCost.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComRdCostWeightPrediction.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComRom.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComSampleAdaptiveOffset.cpp"
             ex="false"
@@ -391,26 +365,18 @@
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComTrQuant.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComWeightPrediction.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibCommon/TComYuv.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/TLibDecoder/AnnexBread.cpp"
             ex="false"
@@ -544,12 +510,8 @@
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="source/Lib/libmd5/libmd5.c" ex="false" tool="0" flavor2="0">
-        <cTool flags="1">
-        </cTool>
       </item>
     </conf>
   </confs>

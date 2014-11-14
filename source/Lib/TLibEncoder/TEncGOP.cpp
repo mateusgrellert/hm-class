@@ -1932,7 +1932,8 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     pcPic->getPicYuvRec()->copyToPic(pcPicYuvRecOut);
    
 #if EN_COMPLEXITY_MANAGEMENT
-      TComClassifier::calcFrameSobel(pcPic->getPicYuvOrg() , pcPic->getPOC());
+    TComClassifier::printSobelFrames( pcPic->getPOC());
+    //TComClassifier::calcFrameSobel(pcPic->getPicYuvOrg() , pcPic->getPOC());
 #endif
       
     pcPic->setReconMark   ( true );
