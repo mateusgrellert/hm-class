@@ -986,9 +986,7 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
       m_pcSliceEncoder->precompressSlice( pcPic );
       m_pcSliceEncoder->compressSlice   ( pcPic );
 
-#if EN_COMPLEXITY_MANAGEMENT
-      TComClassifier::printSobelFrames(pcPic->getPOC());
-#endif
+
       
       Bool bNoBinBitConstraintViolated = (!pcSlice->isNextSlice() && !pcSlice->isNextSliceSegment());
       if (pcSlice->isNextSlice() || (bNoBinBitConstraintViolated && m_pcCfg->getSliceMode()==FIXED_NUMBER_OF_LCU))
@@ -1932,7 +1930,11 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     xResetNonNestedSEIPresentFlags();
     xResetNestedSEIPresentFlags();
     pcPic->getPicYuvRec()->copyToPic(pcPicYuvRecOut);
-    
+   
+#if EN_COMPLEXITY_MANAGEMENT
+      TComClassifier::calcFrameSobel(pcPic->getPicYuvOrg() , pcPic->getPOC());
+#endif
+      
     pcPic->setReconMark   ( true );
     m_bFirst = false;
     m_iNumPicCoded++;

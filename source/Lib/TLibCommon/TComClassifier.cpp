@@ -1,13 +1,11 @@
 #include <fstream>
 #include <sstream>
 #include "TComClassifier.h"
-
+#include <cmath>
 using namespace std;
 
 double** TComClassifier::grad;
 double** TComClassifier::magnitude;
-double** TComClassifier::avg_grad;
-double** TComClassifier::avg_magnitude;
 
 ofstream TComClassifier::outSobelGrad;
 ofstream TComClassifier::outSobelMagn;
@@ -20,14 +18,10 @@ void TComClassifier::init(int picw, int pich){
    
     grad = new double*[picHeight];
     magnitude = new double*[picHeight];
-    avg_grad = new double*[picHeight];
-    avg_magnitude = new double*[picHeight];
 
     for(int i = 0; i < picHeight; i++){
         grad[i] = new double[picWidth];
-        magnitude[i] = new double[picWidth];
-        avg_grad[i] = new double[picWidth];
-        avg_magnitude[i] = new double[picWidth];       
+        magnitude[i] = new double[picWidth];   
     }
     
     outSobelGrad.open("SobelGrad_0.out",ofstream::out);
@@ -35,67 +29,48 @@ void TComClassifier::init(int picw, int pich){
 
 }
 
-void TComClassifier::calcCUSobel(TComDataCU*& cu, TComYuv* origYuv){
-    TComPic* pcPic = cu->getPic();
-    int picWidth = pcPic->getPicYuvOrg()->getWidth();
-    int picHeight = pcPic->getPicYuvOrg()->getHeight();
-
-    UInt cuWidth = origYuv->getWidth();
-    UInt cuX = cu->getCUPelX();
-    UInt cuY = cu->getCUPelY();
-    UInt stride = pcPic->getPicYuvOrg()->getWidth();
-
-    double luma[64][64];
-    
+void TComClassifier::calcFrameSobel(TComPicYuv* recFrame, int poc){    
 
             
-    Pel* lumaPointer = origYuv->getLumaAddr();
-    lumaPointer += cuX*cuWidth + cuY*stride;
+    Pel* lumaPointer = recFrame->getLumaAddr();
+    //lumaPointer += (picWidth+1);
+
+    Int stride = recFrame->getStride();
+    lumaPointer += stride+1;
+
+   for(int i = 1; i < picHeight-1 ; i++){
+        for(int j = 1; j < picWidth-1 ; j++){
+             
     
-    for(int i = 0; i < cuWidth and (cuY+i) < picHeight; i++){
-        for(int j = 0; j < cuWidth and  (cuX+j) < picWidth; j++){
-            luma[i][j] = lumaPointer[0];
+            int s00 = *(&lumaPointer[j]-stride-1);
+            int s01 = *(&lumaPointer[j]-stride);
+            int s02 = *(&lumaPointer[j]-stride+1);
+            int s10 = *(&lumaPointer[j]-1);
+            int s11 = lumaPointer[j];
+            int s12 = *(&lumaPointer[j]+1);
+            int s20 = *(&lumaPointer[j]+stride-1);
+            int s21 = *(&lumaPointer[j]+stride);
+            int s22 = *(&lumaPointer[j]+stride+1);
             
-            lumaPointer++;
-        }
-      //  lumaPointer += stride;
-    }
-    
-    
-    for(int i = 0; i < cuWidth and (cuY+i) < picHeight; i++){
-        for(int j = 0; j < cuWidth and  (cuX+j) < picWidth; j++){
-            int s00 = (i-1<0  or j-1<0)                 ? 0 : luma[i-1][j-1];
-            int s01 = (i-1<0)                           ? 0 : luma[i-1][j];
-            int s02 = (i-1<0  or j+1>=picWidth)         ? 0 : luma[i-1][j+1];
-            int s10 = (j-1<0)                           ? 0 : luma[i][j-1];
-            int s11 =                                         luma[i][j];
-            int s12 = (j+1>=picWidth)                   ? 0 : luma[i][j+1];
-            int s20 = (i+1>=picHeight or j-1<0)         ? 0 : luma[i+1][j-1];
-            int s21 = (i+1>=picHeight)                  ? 0 : luma[i+1][j];
-            int s22 = (i+1>=picHeight or j+1>=picWidth) ? 0 : luma[i+1][j+1];
-            
-            float gv = -1.0*s00 - 2.0*s01 - 1.0*s02 + \
+            double gv = (-1.0*s00 - 2.0*s01 - 1.0*s02 + \
                           0*s10 +   0*s11 +   0*s12 + \
-                        1.0*s20 + 2.0*s21 + 1.0*s22;
+                        1.0*s20 + 2.0*s21 + 1.0*s22)/8.0;
             
-            float gh = -1.0*s00 -   0*s01 + 1.0*s02 + \
+            double gh = (-1.0*s00 -   0*s01 + 1.0*s02 + \
                         -2.0*s10 +  0*s11 + 2.0*s12 + \
-                        -1.0*s20 +  0*s21 + 1.0*s22;
-            
-           
-          /*  int gv = -1*luma[i-1][j-1] - 2*luma[i-1][j] - 1*luma[i-1][j+1] + \
-                      0*luma[i][j-1]         + 0*luma[i][j]         + 0*luma[i][j+1] + \
-                      1*luma[i+1][j-1]  + 2*luma[i+1][j]  + 1*luma[i+1][j+1];
-            
-            int gh = -1*luma[i-1][j-1] + 0*luma[i-1][j] + 1*luma[i-1][j+1] + \
-                     -2*luma[i][j-1]         + 0*luma[i][j]         + 2*luma[i][j+1] + \
-                     -1*luma[i+1][j-1]  + 0*luma[i+1][j]  + 1*luma[i+1][j+1];            
-            */
+                        -1.0*s20 +  0*s21 + 1.0*s22)/8.0;
+
             //cout << gv << " " << gh << " " << sqrt(gv*gv + gh*gh) << endl;
-            grad[cuY+i][cuX+j] = sqrt(gv*gv + gh*gh);
-            magnitude[cuY+i][cuX+j] = atan2(gv,gh);
+            grad[i-1][j-1] = sqrt(gv*gv + gh*gh) > 255? 255 :  sqrt(gv*gv + gh*gh);
+            magnitude[i-1][j-1] = atan2(gv,gh);
+            //magnitude[i][j] = *(&lumaPointer[j]-stride-1);
+  
+            //lumaPointer++;
         }
+        lumaPointer += stride;
+        //lumaPointer += 2;
     }
+    printSobelFrames(poc);
 }
 
 void TComClassifier::printSobelFrames(int poc){
@@ -110,34 +85,20 @@ void TComClassifier::printSobelFrames(int poc){
         sstr << "SobelMagn_" << poc << ".out";
         outSobelMagn.open(sstr.str().c_str(),ofstream::app);
     }
-                  float avgg, avgm;
-                  int bsize = 8;
-    for(int i = 0; i < picHeight; i+=bsize){
-        for(int j = 0; j < picWidth; j+=bsize){
-            avgg = 0;
-            avgm = 0;
-            for(int k = 0; k < bsize; k++){
-                for(int l = 0; l < bsize; l++){
-                    avgg += grad[i+k][j+l];
-                    avgm += magnitude[i+k][j+l];
-
-                }
-            }
-            for(int k = 0; k < bsize; k++){
-                for(int l = 0; l < bsize; l++){
-                   avg_grad[i+k][j+l] = avgg;
-                   avg_grad[i+k][j+l] = avgm;
-
-                }
-            }
+    
+    
+    double max_grad = -999;
+    for(int i = 0; i < picHeight-2; i++){
+        for(int j = 0; j < picWidth-2; j++){
+            max_grad = max(grad[i][j], max_grad);
         }
     }
-                  
-    for(int i = 0; i < picHeight; i++){
-        for(int j = 0; j < picWidth; j++){
+    
+    for(int i = 0; i < picHeight-2; i++){
+        for(int j = 0; j < picWidth-2; j++){
            
-            outSobelGrad << avg_grad[i][j]/(bsize*bsize) << " ";
-            outSobelMagn << avg_magnitude[i][j]/(bsize*bsize) << " ";
+            outSobelGrad << round(grad[i][j]/(max_grad/3.0))<< " ";
+            outSobelMagn << magnitude[i][j] << " ";
 
         }
         outSobelGrad << endl;
@@ -148,26 +109,3 @@ void TComClassifier::printSobelFrames(int poc){
        
 }
 
-/*
-     ofstream outSobel;
-    if (cuX == 0 and cuY == 0){
-        outSobel.open("Sobel.txt",ofstream::out);
-
-        for(int i = 0; i < cuWidth; i++){
-            for(int j = 0; j < cuWidth; j++){
-                outSobel << grad[i][j] << "\t";
-            }
-            outSobel << endl;
-        }
-
-        outSobel << endl;
-
-        for(int i = 0; i < cuWidth; i++){
-            for(int j = 0; j < cuWidth; j++){
-                outSobel << magnitude[i][j] << "\t";
-            }
-            outSobel << endl;
-        }
-        outSobel.close();
-    }
- */

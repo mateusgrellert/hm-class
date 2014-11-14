@@ -359,9 +359,7 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
   // get Original YUV data from picture
   m_ppcOrigYuv[uiDepth]->copyFromPicYuv( pcPic->getPicYuvOrg(), rpcBestCU->getAddr(), rpcBestCU->getZorderIdxInCU() );
   
-#if EN_COMPLEXITY_MANAGEMENT
-  TComClassifier::calcCUSobel(rpcBestCU, m_ppcOrigYuv[uiDepth]);
-#endif
+
   
   // variable for Early CU determination
   Bool    bSubBranch = true;

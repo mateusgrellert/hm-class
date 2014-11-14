@@ -24,7 +24,7 @@ public:
     
     TComClassifier();
     static void init(int, int);
-    static void calcCUSobel(TComDataCU*& cu, TComYuv* origYuv);
+    static void calcFrameSobel(TComPicYuv* recFrame, int poc);
     static void printSobelFrames(int);
 
 };

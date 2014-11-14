@@ -1,0 +1,6 @@
+bin
+compat
+doc
+lib
+**/objects
+*~
