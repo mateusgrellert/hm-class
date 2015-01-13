@@ -1026,6 +1026,11 @@ Void TEncCu::xEncodeCU( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth )
     }
     return;
   }
+ 
+#if EN_COMPLEXITY_MANAGEMENT
+//  if( !pcCU->getSlice()->isIntra() )
+    TComClassifier::setEncCTUDepth(pcCU, uiAbsPartIdx);
+#endif 
   
   if( (g_uiMaxCUWidth>>uiDepth) >= pcCU->getSlice()->getPPS()->getMinCuDQPSize() && pcCU->getSlice()->getPPS()->getUseDQP())
   {

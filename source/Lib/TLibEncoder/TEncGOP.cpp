@@ -1933,6 +1933,7 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
    
 #if EN_COMPLEXITY_MANAGEMENT
     TComClassifier::printSobelFrames( pcPic->getPOC());
+    TComClassifier::printHitMissCTUPrediction();
     //TComClassifier::calcFrameSobel(pcPic->getPicYuvOrg() , pcPic->getPOC());
 #endif
       
