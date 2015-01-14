@@ -40,6 +40,7 @@
 #include "TEncCu.h"
 #include "TEncAnalyze.h"
 #include "TLibCommon/TComClassifier.h"
+#include "TLibCommon/TComCycleMonitor.h"
 #include <cmath>
 #include <algorithm>
 using namespace std;
@@ -229,12 +230,17 @@ Void TEncCu::compressCU( TComDataCU*& rpcCU )
   m_ppcTempCU[0]->initCU( rpcCU->getPic(), rpcCU->getAddr() );
   
 #if EN_COMPLEXITY_MANAGEMENT
-  TComClassifier::calcCTUSobel(m_ppcBestCU[0], rpcCU->getPic()->getPicYuvOrg());
+  TComCycleMonitor::setInitCycle("CTU");
+  TComClassifier::estimateCTUEffort(m_ppcBestCU[0], rpcCU->getPic()->getPicYuvOrg());
 #endif
   
   // analysis of CU
   xCompressCU( m_ppcBestCU[0], m_ppcTempCU[0], 0 );
 
+#if EN_COMPLEXITY_MANAGEMENT
+    TComCycleMonitor::setEndCycle("CTU");
+#endif
+  
 #if ADAPTIVE_QP_SELECTION
   if( m_pcEncCfg->getUseAdaptQpSelect() )
   {

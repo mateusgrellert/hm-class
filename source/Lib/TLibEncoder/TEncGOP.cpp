@@ -47,6 +47,7 @@
 #include "TLibCommon/NAL.h"
 #include "NALwrite.h"
 #include "TLibCommon/TComClassifier.h"
+#include "TLibCommon/TComCycleMonitor.h"
 #include <time.h>
 #include <math.h>
 
@@ -1932,9 +1933,9 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     pcPic->getPicYuvRec()->copyToPic(pcPicYuvRecOut);
    
 #if EN_COMPLEXITY_MANAGEMENT
-    TComClassifier::printSobelFrames( pcPic->getPOC());
-    TComClassifier::printHitMissCTUPrediction();
-    //TComClassifier::calcFrameSobel(pcPic->getPicYuvOrg() , pcPic->getPOC());
+    TComCycleMonitor::reportCycles();
+    if(pocCurr > 1)
+        TComClassifier::printHitMissCTUPrediction();
 #endif
       
     pcPic->setReconMark   ( true );

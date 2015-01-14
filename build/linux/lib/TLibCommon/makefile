@@ -39,6 +39,7 @@ OBJS          	= \
 			$(OBJ_DIR)/TComSampleAdaptiveOffset.o \
 			$(OBJ_DIR)/TComBitStream.o \
 			$(OBJ_DIR)/TComClassifier.o \
+			$(OBJ_DIR)/TComCycleMonitor.o \
 			$(OBJ_DIR)/TComDataCU.o \
 			$(OBJ_DIR)/TComLoopFilter.o \
 			$(OBJ_DIR)/TComMotionInfo.o \

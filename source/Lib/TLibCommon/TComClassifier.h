@@ -23,16 +23,14 @@ public:
     
     static ofstream outSobelGrad, outSobelMagn;
     static int picHeight, picWidth;
-    static int **predictedDepthMap;
-    static int **actualDepthMap;
+    static int **predictedMap;
+    static int **actualMap;
     
     TComClassifier();
     static void init(int, int);
-    static void calcFrameSobel(TComPicYuv* recFrame, int poc);
-    static void calcCTUSobel(TComDataCU* cu, TComPicYuv* origFrame);
-    static void xcalcCTUDivisions(double local_max_grad, int cuX, int cuY, int cuWidth, int cuHeight);
+    static void estimateCTUEffort(TComDataCU* cu, TComPicYuv* origFrame);
+    static void xcalcCTUDivisions(int cuX, int cuY, int cuWidth, int cuHeight);
     static void setEncCTUDepth(TComDataCU* pu, UInt absIdx);
-    static void printSobelFrames(int);
     static void printHitMissCTUPrediction();
 };
 

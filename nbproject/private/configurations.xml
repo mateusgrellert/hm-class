@@ -59,6 +59,8 @@
           <in>TComCABACTables.h</in>
           <in>TComClassifier.cpp</in>
           <in>TComClassifier.h</in>
+          <in>TComCycleMonitor.cpp</in>
+          <in>TComCycleMonitor.h</in>
           <in>TComDataCU.cpp</in>
           <in>TComDataCU.h</in>
           <in>TComInterpolationFilter.cpp</in>
@@ -218,8 +220,10 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BasketballDrive.cfg -f 5</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5 > out.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5 </runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 8</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5 > out.txt</runcommand>
+        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 8</runcommand>
         <rundir>bin</rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>

@@ -1,9 +1,9 @@
 objects/TComRom.d.o: \
- /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.cpp \
- /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.h \
- /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h \
- /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h
- /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.cpp :
- /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.h :
- /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h :
- /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.cpp \
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.h \
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.cpp :
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.h :
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h :
