@@ -7,6 +7,7 @@
 #include <sstream>  
 
 #include "TComCycleMonitor.h"
+#include "TComCABACTables.h"
 using namespace std;
 
 double TComCycleMonitor::minTime;
@@ -15,6 +16,8 @@ double TComCycleMonitor::lastTime;
 int TComCycleMonitor::CTUIdx;
 
 vector<cycle_triplet> TComCycleMonitor::cycleVector;
+vector< vector <pair <double, double> > >  TComCycleMonitor::CTUCycleVector; // curr_frame, average
+
 ofstream TComCycleMonitor::cycleResults;
 uint TComCycleMonitor::currFrame;
 struct timeval TComCycleMonitor::timer;
@@ -24,16 +27,22 @@ TComCycleMonitor::TComCycleMonitor() {
 }
 
 
-void TComCycleMonitor::init(){
+void TComCycleMonitor::init(int picW, int picH){
     minTime = -1.0;
     maxTime = 99999.99;
     lastTime = -1.0;
-    CTUIdx = 0;
     
     if(not(cycleResults.is_open())){        
         cycleResults.open("function_cycle_results.csv",ofstream::out);
         cycleResults << "\t Total Time (us)\tCalls (kCalls)"<< endl;
 
+    }
+    for(int i = 0; i < picH/64+1; i++){
+        vector<pair <double, double> > row;
+        for(int j = 0; j < picW/64+1; j++){
+            row.push_back(make_pair(0.0, 0.0));            
+        }
+        CTUCycleVector.push_back(row);
     }
     
     cycleVector.clear();
@@ -51,14 +60,7 @@ cycle_triplet TComCycleMonitor::createTriplet(string func){
 void TComCycleMonitor::setInitCycle(string func){
     vector<cycle_triplet>::iterator it;
     gettimeofday(&timer,NULL);
-    
-    if(func == "CTU"){
-        ostringstream convert;
-        convert << CTUIdx;
-        
-        func += "_" + convert.str();
-        CTUIdx++;
-    }
+
     
      // tries to find the function in the vector, if not, create node
     for(it = cycleVector.begin(); it != cycleVector.end(); it++){
@@ -75,6 +77,17 @@ void TComCycleMonitor::setInitCycle(string func){
         cycleVector.push_back(triplet);
     }
     
+}
+
+void TComCycleMonitor::setInitCTUCycle(TComDataCU* cu){
+      
+    Int cuX = cu->getCUPelX();
+    Int cuY = cu->getCUPelY();
+        gettimeofday(&timer,NULL);
+
+    CTUCycleVector[cuY/64][cuX/64].first = timer.tv_sec +  timer.tv_usec*1.0/1000000;
+   
+
 }
 
 void TComCycleMonitor::setEndCycle(string func){
@@ -94,6 +107,21 @@ void TComCycleMonitor::setEndCycle(string func){
         }
     }
 }
+
+void TComCycleMonitor::setEndCTUCycle(TComDataCU* cu){
+      
+    Int cuX = cu->getCUPelX();
+    Int cuY = cu->getCUPelY();
+    
+    gettimeofday(&timer,NULL);
+    double diffTime = timer.tv_sec +  timer.tv_usec*1.0/1000000 - CTUCycleVector[cuY/64][cuX/64].first;
+    
+    CTUCycleVector[cuY/64][cuX/64].first = diffTime;
+    CTUCycleVector[cuY/64][cuX/64].second += diffTime;
+
+
+}
+
 
 void TComCycleMonitor::updateMinMaxLast(double t){
     minTime = (t < minTime ? t : minTime);

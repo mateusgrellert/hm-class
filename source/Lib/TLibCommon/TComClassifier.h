@@ -11,6 +11,7 @@
 #include "TLibEncoder/TEncCu.h"
 #include "TComDataCU.h"
 #include <math.h>
+#define max(x,y) ((x) > (y) ? (x) : (y))
 
 #define EN_COMPLEXITY_MANAGEMENT 1
 #define MAX_SOBEL 7.0
@@ -21,7 +22,7 @@ public:
     static double **avg_grad, **avg_magnitude;
     static double max_grad;
     
-    static ofstream outSobelGrad, outSobelMagn;
+    static ofstream CyclePerDepthOut, outSobelMagn;
     static int picHeight, picWidth;
     static int **predictedMap;
     static int **actualMap;
@@ -31,6 +32,7 @@ public:
     static void estimateCTUEffort(TComDataCU* cu, TComPicYuv* origFrame);
     static void xcalcCTUDivisions(int cuX, int cuY, int cuWidth, int cuHeight);
     static void setEncCTUDepth(TComDataCU* pu, UInt absIdx);
+    static void printCyclesPerDepth();
     static void printHitMissCTUPrediction();
 };
 

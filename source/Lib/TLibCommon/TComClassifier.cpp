@@ -1,6 +1,7 @@
 #include <fstream>
 #include <sstream>
 #include "TComClassifier.h"
+#include "TComCycleMonitor.h"
 #include <cmath>
 using namespace std;
 
@@ -8,7 +9,7 @@ double** TComClassifier::grad;
 double** TComClassifier::magnitude;
 double TComClassifier::max_grad;
 
-ofstream TComClassifier::outSobelGrad;
+ofstream TComClassifier::CyclePerDepthOut;
 ofstream TComClassifier::outSobelMagn;
 int TComClassifier::picWidth;
 int TComClassifier::picHeight;
@@ -37,7 +38,7 @@ void TComClassifier::init(int picw, int pich){
         actualMap[i] = new int[picWidth/64+1];
     }
 
-    outSobelGrad.open("SobelGrad_0.out",ofstream::out);
+    CyclePerDepthOut.open("CyclePerDepth.csv",ofstream::out);
     outSobelMagn.open("SobelMagn_0.out",ofstream::out);
 
 }
@@ -78,6 +79,7 @@ void TComClassifier::printHitMissCTUPrediction(){
     int hit_count, miss_count, total;
     hit_count = miss_count = total = 0;
     cout << endl;
+
     for (int i = 0; i < picHeight/64; i++){
         for(int j = 0; j < picWidth/64; j++){
             if (predictedMap[i][j] >= actualMap[i][j])
@@ -96,4 +98,28 @@ void TComClassifier::printHitMissCTUPrediction(){
     }
     cout << "\tHits: " << double(hit_count)/total << "\t";
     cout << "Misses: " << double(miss_count)/total << endl;
+}
+
+void TComClassifier::printCyclesPerDepth(){
+    double depthCycles[] = {0,0,0,0};
+    int depthCount[] = {0,0,0,0};
+
+    for(int i = 0; i < picHeight/64; i++){
+        for(int j = 0; j < picWidth/64; j++){
+            depthCycles[actualMap[i][j]] += TComCycleMonitor::CTUCycleVector[i][j].first;
+            depthCount[actualMap[i][j]]++;
+        }
+    }
+    for(int i = 0; i < 4; i++){
+        CyclePerDepthOut << depthCycles[i] << "\t";
+    }
+        
+    CyclePerDepthOut << "\t";
+
+    for(int i = 0; i < 4; i++){
+        CyclePerDepthOut << depthCount[i] << "\t";
+    }
+    
+    CyclePerDepthOut << endl;
+
 }

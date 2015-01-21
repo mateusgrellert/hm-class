@@ -1933,9 +1933,10 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     pcPic->getPicYuvRec()->copyToPic(pcPicYuvRecOut);
    
 #if EN_COMPLEXITY_MANAGEMENT
-    TComCycleMonitor::reportCycles();
-    if(pocCurr > 1)
+    if(pocCurr > 1){
+        TComClassifier::printCyclesPerDepth();
         TComClassifier::printHitMissCTUPrediction();
+    }
 #endif
       
     pcPic->setReconMark   ( true );

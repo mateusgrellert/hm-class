@@ -230,7 +230,7 @@ Void TEncCu::compressCU( TComDataCU*& rpcCU )
   m_ppcTempCU[0]->initCU( rpcCU->getPic(), rpcCU->getAddr() );
   
 #if EN_COMPLEXITY_MANAGEMENT
-  TComCycleMonitor::setInitCycle("CTU");
+  TComCycleMonitor::setInitCTUCycle(m_ppcBestCU[0]);
   TComClassifier::estimateCTUEffort(m_ppcBestCU[0], rpcCU->getPic()->getPicYuvOrg());
 #endif
   
@@ -238,7 +238,7 @@ Void TEncCu::compressCU( TComDataCU*& rpcCU )
   xCompressCU( m_ppcBestCU[0], m_ppcTempCU[0], 0 );
 
 #if EN_COMPLEXITY_MANAGEMENT
-    TComCycleMonitor::setEndCycle("CTU");
+    TComCycleMonitor::setEndCTUCycle(m_ppcBestCU[0]);
 #endif
   
 #if ADAPTIVE_QP_SELECTION

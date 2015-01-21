@@ -50,7 +50,8 @@ objects/TComClassifier.d.o: \
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/TEncRateCtrl.h \
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/../TLibCommon/CommonDef.h \
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/../TLibCommon/TComDataCU.h \
- /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/../TLibEncoder/TEncCfg.h
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/../TLibEncoder/TEncCfg.h \
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComCycleMonitor.h
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComClassifier.cpp :
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComClassifier.h :
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/TEncCu.h :
@@ -103,3 +104,4 @@ objects/TComClassifier.d.o: \
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/../TLibCommon/CommonDef.h :
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/../TLibCommon/TComDataCU.h :
  /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibEncoder/../TLibEncoder/TEncCfg.h :
+ /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComCycleMonitor.h :

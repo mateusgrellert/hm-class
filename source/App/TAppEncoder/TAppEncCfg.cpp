@@ -49,6 +49,7 @@ static istream& operator>>(istream &, Profile::Name &);
 #include "TAppCommon/program_options_lite.h"
 #include "TLibEncoder/TEncRateCtrl.h"
 #include "TLibCommon/TComClassifier.h"
+#include "TLibCommon/TComCycleMonitor.h"
 #ifdef WIN32
 #define strdup _strdup
 #endif
@@ -540,7 +541,9 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   const list<const Char*>& argv_unhandled = po::scanArgv(opts, argc, (const Char**) argv);
   
 #if EN_COMPLEXITY_MANAGEMENT
-  TComClassifier::init(m_iSourceWidth, m_iSourceHeight);
+  TComCycleMonitor::init(m_iSourceWidth, m_iSourceHeight);
+    TComClassifier::init(m_iSourceWidth, m_iSourceHeight);
+
 #endif
   
   
