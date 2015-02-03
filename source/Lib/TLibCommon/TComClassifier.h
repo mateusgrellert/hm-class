@@ -32,7 +32,10 @@ public:
     static void estimateCTUEffort(TComDataCU* cu, TComPicYuv* origFrame);
     static void xcalcCTUDivisions(int cuX, int cuY, int cuWidth, int cuHeight);
     static void setEncCTUDepth(TComDataCU* pu, UInt absIdx);
-    static void printCyclesPerDepth();
+        
+    static bool terminateCTU(TComDataCU* cu, unsigned int);
+
+    static void printCyclesPerDepth(int poc);
     static void printHitMissCTUPrediction();
 };
 

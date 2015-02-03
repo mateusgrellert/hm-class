@@ -39,6 +39,8 @@ void TComClassifier::init(int picw, int pich){
     }
 
     CyclePerDepthOut.open("CyclePerDepth.csv",ofstream::out);
+    CyclePerDepthOut << "\tCycle Count\t\t\t\t\tBest Choice Count" << endl;
+    CyclePerDepthOut << "POC\tDepth 0\tDepth 1\tDepth 2\tDepth 3\t\tDepth 0\tDepth 1\tDepth 2\tDepth 3" << endl;
     outSobelMagn.open("SobelMagn_0.out",ofstream::out);
 
 }
@@ -100,7 +102,7 @@ void TComClassifier::printHitMissCTUPrediction(){
     cout << "Misses: " << double(miss_count)/total << endl;
 }
 
-void TComClassifier::printCyclesPerDepth(){
+void TComClassifier::printCyclesPerDepth(int poc){
     double depthCycles[] = {0,0,0,0};
     int depthCount[] = {0,0,0,0};
 
@@ -110,6 +112,8 @@ void TComClassifier::printCyclesPerDepth(){
             depthCount[actualMap[i][j]]++;
         }
     }
+    
+    CyclePerDepthOut << "POC " << poc << "\t";
     for(int i = 0; i < 4; i++){
         CyclePerDepthOut << depthCycles[i] << "\t";
     }
@@ -122,4 +126,11 @@ void TComClassifier::printCyclesPerDepth(){
     
     CyclePerDepthOut << endl;
 
+}
+
+bool TComClassifier::terminateCTU(TComDataCU* cu, unsigned int depth){
+    Int cuX = cu->getCUPelX();
+    Int cuY = cu->getCUPelY();
+    
+    return ((cu->getPic()->getPOC() > 2) and depth == predictedMap[cuY/64][cuX/64]);
 }

@@ -675,7 +675,11 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
     rpcBestCU->getTotalCost()  = m_pcRdCost->calcRdCost( rpcBestCU->getTotalBits(), rpcBestCU->getTotalDistortion() );
 
     // Early CU determination
+#if EN_COMPLEXITY_MANAGEMENT
+    if( (TComClassifier::terminateCTU(rpcTempCU, uiDepth)) or (m_pcEncCfg->getUseEarlyCU() && rpcBestCU->isSkipped(0) ))
+#else
     if( m_pcEncCfg->getUseEarlyCU() && rpcBestCU->isSkipped(0) )
+#endif
     {
       bSubBranch = false;
     }

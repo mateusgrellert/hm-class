@@ -1934,7 +1934,7 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
    
 #if EN_COMPLEXITY_MANAGEMENT
     if(pocCurr > 1){
-        TComClassifier::printCyclesPerDepth();
+        TComClassifier::printCyclesPerDepth(pcPic->getPOC());
         TComClassifier::printHitMissCTUPrediction();
     }
 #endif

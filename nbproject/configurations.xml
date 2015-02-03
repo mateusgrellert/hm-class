@@ -113,7 +113,6 @@
       </toolsSet>
       <flagsDictionary>
         <element flagsID="0" commonFlags="-fPIC"/>
-        <element flagsID="1" commonFlags="-fPIC -g"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>

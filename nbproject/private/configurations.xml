@@ -202,8 +202,6 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
-        <gdb_signals>
-        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -215,19 +213,19 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorses.cfg -f 3</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 3</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BasketballDrive.cfg -f 5</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5 > out.txt</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5 </runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 8</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BasketballDrive.cfg -f 30</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 30</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 30 --QP=22
 </runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 30 --QP=22</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5 --QP=22</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 5 --QP=32</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 12 --QP=32</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 12 --QP=32 --MaxPartitionDepth=3</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 12 --QP=32 --MaxPartitionDepth=2</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 12 --QP=32 --MaxPartitionDepth=1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 12 --QP=32 --MaxPartitionDepth=1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 12 --QP=32 --MaxPartitionDepth=4</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/RaceHorsesC.cfg -f 30 --QP=22</runcommand>
+        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 12 --QP=32 --MaxPartitionDepth=4</runcommand>
         <rundir>bin</rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>
