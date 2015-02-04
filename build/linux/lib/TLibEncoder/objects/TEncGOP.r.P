@@ -76,7 +76,8 @@ objects/TEncGOP.r.o: \
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h \
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComClassifier.h \
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncCu.h \
- /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComCycleMonitor.h
+ /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComCycleMonitor.h \
+ /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComComplexityController.h
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncGOP.cpp :
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncTop.h :
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComList.h :
@@ -155,3 +156,4 @@ objects/TEncGOP.r.o: \
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComClassifier.h :
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncCu.h :
  /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComCycleMonitor.h :
+ /home/grellert/hm-classifier/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComComplexityController.h :

@@ -41,6 +41,7 @@
 #include "TEncAnalyze.h"
 #include "TLibCommon/TComClassifier.h"
 #include "TLibCommon/TComCycleMonitor.h"
+#include "TLibCommon/TComComplexityController.h"
 #include <cmath>
 #include <algorithm>
 using namespace std;
@@ -676,7 +677,7 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
 
     // Early CU determination
 #if EN_COMPLEXITY_MANAGEMENT
-    if( (TComClassifier::terminateCTU(rpcTempCU, uiDepth)) or (m_pcEncCfg->getUseEarlyCU() && rpcBestCU->isSkipped(0) ))
+    if( (TComComplexityController::isConstrained(rpcTempCU->getPic()->getPOC()) and (TComClassifier::terminateCTU(rpcTempCU, uiDepth))) or (m_pcEncCfg->getUseEarlyCU() && rpcBestCU->isSkipped(0) ))
 #else
     if( m_pcEncCfg->getUseEarlyCU() && rpcBestCU->isSkipped(0) )
 #endif

@@ -48,6 +48,7 @@
 #include "NALwrite.h"
 #include "TLibCommon/TComClassifier.h"
 #include "TLibCommon/TComCycleMonitor.h"
+#include "TLibCommon/TComComplexityController.h"
 #include <time.h>
 #include <math.h>
 
@@ -1639,6 +1640,17 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     //-- For time output for each slice
     Double dEncTime = (Double)(clock()-iBeforeTime) / CLOCKS_PER_SEC;
     
+    
+#if EN_COMPLEXITY_MANAGEMENT
+    if(pocCurr > 1){
+        TComComplexityController::setPV(dEncTime);
+        if(pocCurr >= 4)
+            TComComplexityController::calcPI();
+        TComClassifier::printCyclesPerDepth(pcPic->getPOC());
+      //  TComClassifier::printHitMissCTUPrediction();
+    }
+#endif
+    
     const Char* digestStr = NULL;
     if (m_pcCfg->getDecodedPictureHashSEIEnabled())
     {
@@ -1932,12 +1944,7 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     xResetNestedSEIPresentFlags();
     pcPic->getPicYuvRec()->copyToPic(pcPicYuvRecOut);
    
-#if EN_COMPLEXITY_MANAGEMENT
-    if(pocCurr > 1){
-        TComClassifier::printCyclesPerDepth(pcPic->getPOC());
-        TComClassifier::printHitMissCTUPrediction();
-    }
-#endif
+
       
     pcPic->setReconMark   ( true );
     m_bFirst = false;

@@ -32,6 +32,8 @@
           <in>TComBitStream.cpp</in>
           <in>TComCABACTables.cpp</in>
           <in>TComClassifier.cpp</in>
+          <in>TComComplexityController.cpp</in>
+          <in>TComComplexityController.h</in>
           <in>TComCycleMonitor.cpp</in>
           <in>TComDataCU.cpp</in>
           <in>TComInterpolationFilter.cpp</in>
@@ -295,6 +297,16 @@
       <item path="source/Lib/TLibCommon/TComClassifier.cpp"
             ex="false"
             tool="1"
+            flavor2="0">
+      </item>
+      <item path="source/Lib/TLibCommon/TComComplexityController.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="source/Lib/TLibCommon/TComComplexityController.h"
+            ex="false"
+            tool="3"
             flavor2="0">
       </item>
       <item path="source/Lib/TLibCommon/TComCycleMonitor.cpp"

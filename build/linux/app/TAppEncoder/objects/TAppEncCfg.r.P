@@ -60,7 +60,8 @@ objects/TAppEncCfg.r.o: \
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncBinCoderCABACCounter.h \
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncCfg.h \
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncRateCtrl.h \
- /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/TComCycleMonitor.h
+ /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/TComCycleMonitor.h \
+ /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/TComComplexityController.h
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/App/TAppEncoder/TAppEncCfg.cpp :
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/TComRom.h :
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
@@ -123,3 +124,4 @@ objects/TAppEncCfg.r.o: \
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncCfg.h :
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncRateCtrl.h :
  /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/TComCycleMonitor.h :
+ /home/grellert/hm-classifier/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/TComComplexityController.h :
