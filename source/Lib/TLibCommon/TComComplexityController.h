@@ -8,6 +8,10 @@
 #ifndef TCOMCOMPLEXITYCONTROLLER_H
 #define	TCOMCOMPLEXITYCONTROLLER_H
 
+#include <fstream>
+
+using namespace std;
+
 #define abs(x) ((x) > 0? (x) : -(x))
 
 class TComComplexityController{
@@ -16,6 +20,8 @@ public:
     static double KP, KI, KD;
     static double PIOut, PIDOut;
     static double prevError, diffError, acumError;
+    
+    static ofstream controlFile;
     
     TComComplexityController();
     static void init(double sp);

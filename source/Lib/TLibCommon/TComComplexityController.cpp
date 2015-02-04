@@ -1,7 +1,11 @@
 #include "TComComplexityController.h"
 
 #include <iostream>
-    
+#include <fstream>
+
+using namespace std;
+
+
 double TComComplexityController::SP;
 double TComComplexityController::PV;
 double TComComplexityController::KP;
@@ -13,6 +17,8 @@ double TComComplexityController::prevError;
 double TComComplexityController::diffError;
 double TComComplexityController::acumError;
 
+ofstream TComComplexityController::controlFile;
+
 TComComplexityController::TComComplexityController() {
     return;
 }
@@ -22,6 +28,7 @@ void TComComplexityController::init(double sp){
     SP= 5.0;
     acumError = prevError = diffError = 0.0;
     KP =  KI = KD = 1.0;
+    controlFile.open("controlOut.csv",ofstream::out);
 }
 
 void TComComplexityController::calcPI(){
@@ -30,7 +37,7 @@ void TComComplexityController::calcPI(){
     diffError = prevError - error;
     
     PIOut = KP*error + KI*error;
-    std::cout << "\tSP: " << SP << "\tPV: " << PV << "\tPI output: " << PIOut << std::endl;
+    controlFile << "\tSP: " << SP << "\tPV: " << PV << "\tPI output: " << PIOut << endl;
     
 }
 
