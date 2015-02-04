@@ -41,7 +41,6 @@ void TComClassifier::init(int picw, int pich){
     CyclePerDepthOut.open("CyclePerDepth.csv",ofstream::out);
     CyclePerDepthOut << "\tCycle Count\t\t\t\t\tBest Choice Count" << endl;
     CyclePerDepthOut << "POC\tDepth 0\tDepth 1\tDepth 2\tDepth 3\t\tDepth 0\tDepth 1\tDepth 2\tDepth 3" << endl;
-    outSobelMagn.open("SobelMagn_0.out",ofstream::out);
 
 }
 

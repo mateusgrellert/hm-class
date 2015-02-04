@@ -2,6 +2,7 @@ bin
 compat
 doc
 lib
-**/objects
+*/**/*.o
+*/**/*.P
 *~
 nbproject

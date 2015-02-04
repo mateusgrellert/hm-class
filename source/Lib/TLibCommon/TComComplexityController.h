@@ -27,7 +27,7 @@ public:
     static void init(double sp);
     static void setPV(double v) { PV = v; };
     static void calcPI(int poc);
-    static void calcPID();
+    static void calcPID(int poc);
     static bool isConstrained(int poc);
 
 
