@@ -25,25 +25,28 @@ TComComplexityController::TComComplexityController() {
 
 void TComComplexityController::init(double sp){
     SP = sp;
-    SP= 5.0;
+
     acumError = prevError = diffError = 0.0;
     KP =  KI = KD = 1.0;
     controlFile.open("controlOut.csv",ofstream::out);
 }
 
-void TComComplexityController::calcPI(){
+void TComComplexityController::calcPI(int poc){
+    
+    SP= (1.0 - 0.2*(poc/30))*10.0;
+    
     double error = SP - PV;
     acumError += error;
     diffError = prevError - error;
     
     PIOut = KP*error + KI*error;
-    controlFile << "\tSP: " << SP << "\tPV: " << PV << "\tPI output: " << PIOut << endl;
+    controlFile << SP << "\t" << PV << "\t" << PIOut + SP << endl;
     
 }
 
 bool TComComplexityController::isConstrained(int poc){
     
-    if (poc > 4 and abs(PIOut) > 0.1)
+    if (poc > 4 and (PIOut) < 0.1)
         return true;
     return false;
 } 

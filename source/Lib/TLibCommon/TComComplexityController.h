@@ -26,7 +26,7 @@ public:
     TComComplexityController();
     static void init(double sp);
     static void setPV(double v) { PV = v; };
-    static void calcPI();
+    static void calcPI(int poc);
     static void calcPID();
     static bool isConstrained(int poc);
 

@@ -1645,7 +1645,7 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     if(pocCurr > 1){
         TComComplexityController::setPV(dEncTime);
         if(pocCurr >= 4)
-            TComComplexityController::calcPI();
+            TComComplexityController::calcPI(pocCurr);
         TComClassifier::printCyclesPerDepth(pcPic->getPOC());
       //  TComClassifier::printHitMissCTUPrediction();
     }
