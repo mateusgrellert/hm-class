@@ -1,8 +1,8 @@
-bin
-compat
-doc
-lib
+bin/*
+compat/*
+doc/*
+lib/*
 */**/*.o
 */**/*.P
 *~
-nbproject
+nbproject/*
