@@ -1640,16 +1640,7 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     //-- For time output for each slice
     Double dEncTime = (Double)(clock()-iBeforeTime) / CLOCKS_PER_SEC;
     
-    
-#if EN_COMPLEXITY_MANAGEMENT
-    if(pocCurr > 1){
-        TComComplexityController::setPV(dEncTime);
-        if(pocCurr >= 4)
-            TComComplexityController::calcPI(pocCurr);
-        TComClassifier::printCyclesPerDepth(pcPic->getPOC());
-      //  TComClassifier::printHitMissCTUPrediction();
-    }
-#endif
+
     
     const Char* digestStr = NULL;
     if (m_pcCfg->getDecodedPictureHashSEIEnabled())
@@ -1711,6 +1702,17 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
     }
     
     xCalculateAddPSNR( pcPic, pcPic->getPicYuvRec(), accessUnit, dEncTime );
+    
+        
+#if EN_COMPLEXITY_MANAGEMENT
+    if(pocCurr > 1){
+        TComComplexityController::setPV(dEncTime);
+        if(pocCurr >= 4)
+            TComComplexityController::calcPID(pocCurr);
+        TComClassifier::printCyclesPerDepth(pcPic->getPOC());
+      //  TComClassifier::printHitMissCTUPrediction();
+    }
+#endif
     
     //In case of field coding, compute the interlaced PSNR for both fields
     if (isField && ((!pcPic->isTopField() && isTff) || (pcPic->isTopField() && !isTff)) && (pcPic->getPOC()%m_iGopSize != 1))

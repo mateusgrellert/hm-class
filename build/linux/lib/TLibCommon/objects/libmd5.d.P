@@ -1,5 +1,5 @@
 objects/libmd5.d.o: \
- /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.c \
- /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.h
- /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.c :
- /home/grellert/hm-classifier/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.h :
+ /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.c \
+ /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.h
+ /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.c :
+ /home/grellert/hm-class/build/linux/lib/TLibCommon/../../../../source/Lib/libmd5/libmd5.h :

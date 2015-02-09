@@ -131,5 +131,5 @@ bool TComClassifier::terminateCTU(TComDataCU* cu, unsigned int depth){
     Int cuX = cu->getCUPelX();
     Int cuY = cu->getCUPelY();
     
-    return ((cu->getPic()->getPOC() > 2) and depth == predictedMap[cuY/64][cuX/64]);
+    return (depth == predictedMap[cuY/64][cuX/64]);
 }

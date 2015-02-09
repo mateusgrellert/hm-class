@@ -677,7 +677,7 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
 
     // Early CU determination
 #if EN_COMPLEXITY_MANAGEMENT
-    if( (TComComplexityController::isConstrained(rpcTempCU->getPic()->getPOC()) and (TComClassifier::terminateCTU(rpcTempCU, uiDepth))) or (m_pcEncCfg->getUseEarlyCU() && rpcBestCU->isSkipped(0) ))
+    if( (TComComplexityController::isConstrained(rpcTempCU->getPic()->getPOC()) and (TComComplexityController::terminateCTU(uiDepth))) or (m_pcEncCfg->getUseEarlyCU() && rpcBestCU->isSkipped(0) ))
 #else
     if( m_pcEncCfg->getUseEarlyCU() && rpcBestCU->isSkipped(0) )
 #endif
