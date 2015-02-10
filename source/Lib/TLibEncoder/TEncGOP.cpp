@@ -1707,6 +1707,9 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
 #if EN_COMPLEXITY_MANAGEMENT
     if(pocCurr > 1){
         TComComplexityController::setPV(dEncTime);
+        if (pocCurr == 4)
+            TComComplexityController::setSP(dEncTime);
+
         if(pocCurr >= 4)
             TComComplexityController::calcPID(pocCurr);
         TComClassifier::printCyclesPerDepth(pcPic->getPOC());
@@ -2374,7 +2377,7 @@ Void TEncGOP::xCalculateAddPSNR( TComPic* pcPic, TComPicYuv* pcPicD, const Acces
 #endif
 
   printf(" [Y %6.4lf dB    U %6.4lf dB    V %6.4lf dB]", dYPSNR, dUPSNR, dVPSNR );
-  printf(" [ET %5.0f ]", dEncTime );
+  printf(" [ET %5.2f ]", dEncTime );
   
   for (Int iRefList = 0; iRefList < 2; iRefList++)
   {

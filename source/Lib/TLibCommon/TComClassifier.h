@@ -13,7 +13,6 @@
 #include <math.h>
 #define max(x,y) ((x) > (y) ? (x) : (y))
 
-#define EN_COMPLEXITY_MANAGEMENT 1
 #define MAX_SOBEL 7.0
 
 class TComClassifier{

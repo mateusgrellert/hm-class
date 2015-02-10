@@ -253,11 +253,19 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   string cfg_startOfCodedInterval;
   string cfg_codedPivotValue;
   string cfg_targetPivotValue;
+#if EN_COMPLEXITY_MANAGEMENT
+  double SP_factor;
+  int budgetAlg;
+#endif
   po::Options opts;
   opts.addOptions()
   ("help", do_help, false, "this help text")
   ("c", po::parseConfigFile, "configuration file name")
-  
+#if EN_COMPLEXITY_MANAGEMENT
+  ("SP_factor",             SP_factor,    (double)   1.0,  "Reduction factor for complexity control")
+  ("budget_alg",             budgetAlg,                0,  "Budget Algorithm Selection complexity control")
+
+#endif
   // File, I/O and source parameters
   ("InputFile,i",           cfg_InputFile,     string(""), "Original YUV input file name")
   ("BitstreamFile,b",       cfg_BitstreamFile, string(""), "Bitstream output file name")
@@ -542,7 +550,7 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   const list<const Char*>& argv_unhandled = po::scanArgv(opts, argc, (const Char**) argv);
   
 #if EN_COMPLEXITY_MANAGEMENT
-  TComComplexityController::init(1/30.0);
+  TComComplexityController::init(SP_factor, budgetAlg);
   TComCycleMonitor::init(m_iSourceWidth, m_iSourceHeight);
   TComClassifier::init(m_iSourceWidth, m_iSourceHeight);
 #endif
