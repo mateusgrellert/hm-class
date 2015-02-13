@@ -17,9 +17,10 @@ double TComComplexityController::PIDOut;
 double TComComplexityController::prevError;
 double TComComplexityController::diffError;
 double TComComplexityController::acumError;
-
+double TComComplexityController::avgPV;
 int TComComplexityController::budgetAlgorithm;
 int TComComplexityController::currBudgetDepth;
+int TComComplexityController::frameCounter;
 
 ofstream TComComplexityController::controlFile;
 
@@ -31,13 +32,15 @@ void TComComplexityController::init(double sp_factor, int budgetAlg){
     SP_factor = sp_factor;
     currBudgetDepth = 3;
     budgetAlgorithm = budgetAlg;
-    
+    PV = 0;
     acumError = prevError = diffError = 0.0;
     KP =  KI = KD = 1.0;
    // KP = 0.5;
    // KI = 0.5;
     KI = 1.0;
     KD = 0.5;
+    avgPV = 0.0;
+    frameCounter = 0;
     
     controlFile.open("controlOut.csv",ofstream::out);
     controlFile << "KP\t" << KP << "\tKI\t" << KI << "\tKD\t" << KD << endl << "SP\tPV\tControl Output\tBudget Depth for Fi+1" << endl;
@@ -57,10 +60,14 @@ void TComComplexityController::calcPI(int poc){
     prevError = error;
     
     PIOut = KP*error + KI*acumError;
-        
+            
+    avgPV += PV;
+    frameCounter++;
+    
     calcBudget();
+    
     controlFile << SP << "\t" << PV << "\t" << PIOut + PV << "\t" << currBudgetDepth << endl;
-
+    PV = 0;
 }
 
 void TComComplexityController::calcPID(int poc){
@@ -77,29 +84,38 @@ void TComComplexityController::calcPID(int poc){
 
     
     PIOut = KP*error + KI*acumError + KD*diffError;
-    
+        
+    avgPV += PV;
+    frameCounter++;
     
     calcBudget();
+
     controlFile << SP << "\t" << PV << "\t" << PIOut + PV << "\t" << currBudgetDepth << endl;
-    
+    PV = 0;
+
 }
 
 void TComComplexityController::calcBudget(){
         switch(budgetAlgorithm){
-            case 0:  budgetAlgorithm0();
-            case 1:  budgetAlgorithm1();
-            default: budgetAlgorithm0();
+            case 0:  budgetAlgorithm0();             
+                     break;
+            case 1:  budgetAlgorithm1();            
+                     break;
+           // case 2:  budgetAlgorithm2();
+            default: budgetAlgorithm0();             
+                     break;
         }
 
 }
 
-void TComComplexityController::budgetAlgorithm1(){
-        
-    double PVDiff = 1-((PV+PIOut)/PV);
 
-    if (PVDiff < -0.1)
+void TComComplexityController::budgetAlgorithm1(){  
+        
+    double PVDiff = PV - (PV+PIOut);
+
+    if (PVDiff/SP < -0.1)
         currBudgetDepth++;
-    else if (PVDiff > 0.1)
+    else if ( PVDiff/SP > 0.1)
         currBudgetDepth--;
         
     currBudgetDepth = (currBudgetDepth >= 0? currBudgetDepth : 0);
@@ -109,7 +125,7 @@ void TComComplexityController::budgetAlgorithm1(){
 
 void TComComplexityController::budgetAlgorithm0(){
             
-    double PVDiff = 1-((PV+PIOut)/PV);
+    double PVDiff = 1-((PV+PIOut)/SP);
 
     if (PVDiff <= -0.4)
         currBudgetDepth += 3;  
@@ -130,7 +146,7 @@ void TComComplexityController::budgetAlgorithm0(){
 
 bool TComComplexityController::isConstrained(int poc){
     
-    if (poc > 4 and (PIOut) < 0.1)
+    if (poc > 4 + REFRESH_PERIOD)
         return true;
     return false;
 } 

@@ -39,6 +39,7 @@
 #include <iostream>
 #include "TAppEncTop.h"
 #include "TAppCommon/program_options_lite.h"
+#include "TLibCommon/TComComplexityController.h"
 
 using namespace std;
 namespace po = df::program_options_lite;
@@ -90,7 +91,11 @@ int main(int argc, char* argv[])
   // ending time
   dResult = (double)(clock()-lBefore) / CLOCKS_PER_SEC;
   printf("\n Total Time: %12.3f sec.\n", dResult);
-
+  
+#if EN_COMPLEXITY_MANAGEMENT
+  printf("\nSP %.2f PV %.2f\n", TComComplexityController::SP, TComComplexityController::avgPV/TComComplexityController::frameCounter);
+#endif
+  
   // destroy application encoder class
   cTAppEncTop.destroy();
 

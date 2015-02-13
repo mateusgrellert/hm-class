@@ -73,7 +73,8 @@ objects/encmain.r.o: \
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncPic.h \
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/App/TAppEncoder/TAppEncCfg.h \
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncCfg.h \
- /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TAppCommon/program_options_lite.h
+ /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TAppCommon/program_options_lite.h \
+ /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/TComComplexityController.h
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/App/TAppEncoder/encmain.cpp :
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/App/TAppEncoder/TAppEncTop.h :
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncTop.h :
@@ -149,3 +150,4 @@ objects/encmain.r.o: \
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/App/TAppEncoder/TAppEncCfg.h :
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TLibEncoder/TEncCfg.h :
  /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TAppCommon/program_options_lite.h :
+ /home/grellert/hm-class/build/linux/app/TAppEncoder/../../../../source/Lib/TLibCommon/TComComplexityController.h :

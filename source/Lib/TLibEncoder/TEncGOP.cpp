@@ -1706,11 +1706,12 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
         
 #if EN_COMPLEXITY_MANAGEMENT
     if(pocCurr > 1){
-        TComComplexityController::setPV(dEncTime);
-        if (pocCurr == 4)
-            TComComplexityController::setSP(dEncTime);
-
         if(pocCurr >= 4)
+            TComComplexityController::setPV(dEncTime);
+        if (pocCurr == (4 + REFRESH_PERIOD - 1)){
+            TComComplexityController::setSP();
+        }   
+        if(pocCurr >= (4 + REFRESH_PERIOD - 1) and (pocCurr % REFRESH_PERIOD) == 0)
             TComComplexityController::calcPID(pocCurr);
         TComClassifier::printCyclesPerDepth(pcPic->getPOC());
       //  TComClassifier::printHitMissCTUPrediction();
