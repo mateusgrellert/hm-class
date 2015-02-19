@@ -254,7 +254,7 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   string cfg_codedPivotValue;
   string cfg_targetPivotValue;
 #if EN_COMPLEXITY_MANAGEMENT
-  double SP_factor;
+  double SP_factor, KP, KI, KD;
   int budgetAlg;
 #endif
   po::Options opts;
@@ -263,6 +263,9 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   ("c", po::parseConfigFile, "configuration file name")
 #if EN_COMPLEXITY_MANAGEMENT
   ("SP_factor",             SP_factor,    (double)   1.0,  "Reduction factor for complexity control")
+  ("KP",                    KP,           (double)   1.0,  "KP constant of PID Controller")
+  ("KI",                    KI,           (double)   1.0,  "KI constant of PID Controller")
+  ("KD",                    KD,           (double)   1.0,  "KD constant of PID Controller")
   ("budget_alg",             budgetAlg,                0,  "Budget Algorithm Selection complexity control")
 
 #endif
@@ -551,6 +554,7 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   
 #if EN_COMPLEXITY_MANAGEMENT
   TComComplexityController::init(SP_factor, budgetAlg);
+  TComComplexityController::setPIDConstants(KP, KI, KD);
   TComCycleMonitor::init(m_iSourceWidth, m_iSourceHeight);
   TComClassifier::init(m_iSourceWidth, m_iSourceHeight);
 #endif

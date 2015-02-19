@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -34,16 +35,20 @@ void TComComplexityController::init(double sp_factor, int budgetAlg){
     budgetAlgorithm = budgetAlg;
     PV = 0;
     acumError = prevError = diffError = 0.0;
-    KP =  KI = KD = 1.0;
-   // KP = 0.5;
-   // KI = 0.5;
-    KI = 1.0;
-    KD = 0.5;
+
     avgPV = 0.0;
     frameCounter = 0;
     
-    controlFile.open("controlOut.csv",ofstream::out);
+    
+}
+
+void TComComplexityController::setPIDConstants(double kp, double ki, double kd){
+    KP = kp; KI = ki; KD = kd;
+    stringstream controlFileName;
+    controlFileName << "controlOut_" << KP  << "_" <<  KI << "_" << KD << ".csv";
+    controlFile.open(controlFileName.str().c_str(),ofstream::out);
     controlFile << "KP\t" << KP << "\tKI\t" << KI << "\tKD\t" << KD << endl << "SP\tPV\tControl Output\tBudget Depth for Fi+1" << endl;
+
 
 }
 
@@ -146,7 +151,7 @@ void TComComplexityController::budgetAlgorithm0(){
 
 bool TComComplexityController::isConstrained(int poc){
     
-    if (poc > 4 + REFRESH_PERIOD)
+    if (poc > 4 + REFRESH_PERIOD - 1)
         return true;
     return false;
 } 

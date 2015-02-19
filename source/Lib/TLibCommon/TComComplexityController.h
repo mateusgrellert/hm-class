@@ -9,7 +9,7 @@
 #define	TCOMCOMPLEXITYCONTROLLER_H
 
 #define EN_COMPLEXITY_MANAGEMENT 1
-#define REFRESH_PERIOD 4 // period when controller updates and bugedting occurs
+#define REFRESH_PERIOD 1 // period when controller updates and bugedting occurs
 #include <fstream>
 
 using namespace std;
@@ -31,7 +31,7 @@ public:
     static void setPV(double v) { PV += v;};
     static void setSP()         { SP = PV*SP_factor; };
     static void setBudgetAlgorithm(int i) { budgetAlgorithm = i; };
-
+    static void setPIDConstants(double, double, double);
     static void calcPI(int poc);
     static void calcPID(int poc);
     static void calcBudget();
