@@ -16,6 +16,8 @@ using namespace std;
 
 #define abs(x) ((x) > 0? (x) : -(x))
 
+static const double depthWeitghts[6] = {0.36, 0.6, 0.77, 2.75, 1.67, 1.29};
+
 class TComComplexityController{
 public:
     static double SP, SP_factor, PV;

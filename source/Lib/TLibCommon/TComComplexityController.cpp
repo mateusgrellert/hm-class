@@ -130,26 +130,38 @@ void TComComplexityController::budgetAlgorithm1(){
 
 void TComComplexityController::budgetAlgorithm0(){
             
-    double PVDiff = 1-((PV+PIOut)/SP);
-
-    if (PVDiff <= -0.4)
-        currBudgetDepth += 3;  
-    if (PVDiff > -0.4 and PVDiff <= -0.2)
-        currBudgetDepth += 2;    
-    if (PVDiff > -0.2 and PVDiff <= 0.0)
-        currBudgetDepth += 1;    
-    if (PVDiff > 0.0 and PVDiff <= 0.2)
-        currBudgetDepth -= 1;
-    if (PVDiff > 0.2 and PVDiff <= 0.4)
-        currBudgetDepth -= 2;
-    if (PVDiff > 0.4)
-        currBudgetDepth -= 3;
+    double PVDiff = PV+PIOut;
+    double estimatedPV = PV;
+    
+    if(PVDiff < estimatedPV){  // this means we should save computations
+        while(PVDiff < estimatedPV or currBudgetDepth > 0){
+            estimatedPV = estimatedPV*depthWeitghts[currBudgetDepth-1];
+            currBudgetDepth--;
+        }
+    }
+    else{
+        while(PVDiff > estimatedPV or currBudgetDepth < 3){
+            estimatedPV = estimatedPV*depthWeitghts[currBudgetDepth+3];
+            currBudgetDepth++;
+        }
+    }
+    
                 
     currBudgetDepth = (currBudgetDepth >= 0? currBudgetDepth : 0);
     currBudgetDepth = (currBudgetDepth <= 3? currBudgetDepth : 3);
 }
 
 bool TComComplexityController::isConstrained(int poc){
+    
+   /* if (poc < 15)
+        currBudgetDepth = 0;
+    else if (poc >= 15 and poc < 25)
+        currBudgetDepth = 1;
+    else if (poc >= 25 and poc < 35)
+        currBudgetDepth = 2;
+    else if (poc >= 35)
+        currBudgetDepth = 3;
+    */
     
     if (poc > 4 + REFRESH_PERIOD - 1)
         return true;
