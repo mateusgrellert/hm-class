@@ -134,13 +134,13 @@ void TComComplexityController::budgetAlgorithm0(){
     double estimatedPV = PV;
     
     if(PVDiff < estimatedPV){  // this means we should save computations
-        while(PVDiff < estimatedPV or currBudgetDepth > 0){
+        while(PVDiff < estimatedPV and currBudgetDepth > 0){
             estimatedPV = estimatedPV*depthWeitghts[currBudgetDepth-1];
             currBudgetDepth--;
         }
     }
     else{
-        while(PVDiff > estimatedPV or currBudgetDepth < 3){
+        while(PVDiff > estimatedPV and currBudgetDepth < 3){
             estimatedPV = estimatedPV*depthWeitghts[currBudgetDepth+3];
             currBudgetDepth++;
         }

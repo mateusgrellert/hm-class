@@ -12,7 +12,9 @@
         <group>
             <file>file:/home/grellert/hm-class/source/App/TAppEncoder/TAppEncCfg.cpp</file>
             <file>file:/home/grellert/hm-class/source/Lib/TLibCommon/TComComplexityController.h</file>
-            <file>file:/home/grellert/hm-class/source/Lib/TLibEncoder/TEncGOP.cpp</file>
+            <file>file:/home/grellert/hm-class/source/Lib/TLibCommon/TypeDef.h</file>
+            <file>file:/home/grellert/hm-class/source/Lib/TLibCommon/SEI.h</file>
+            <file>file:/home/grellert/hm-class/source/Lib/TLibCommon/ContextTables.h</file>
             <file>file:/home/grellert/hm-class/source/Lib/TLibCommon/TComComplexityController.cpp</file>
         </group>
     </open-files>

@@ -223,8 +223,10 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 32 --MaxPartitionDepth=4</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/BQSquare.cfg -f 32 --MaxPartitionDepth=4 --SP_factor=0.6 --budget_alg=1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 32 --MaxPartitionDepth=4 --SP_factor=0.6 --budget_alg=1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 32 --MaxPartitionDepth=4 --SP_factor=0.6 --budget_alg=0</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 32 --MaxPartitionDepth=4 --SP_factor=0.8 --budget_alg=0</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 32 --MaxPartitionDepth=4 --SP_factor=0.6 --budget_alg=1</runcommand>
+        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ~/hm-cfgs/cropped/RaceHorsesC.cfg -f 32 --MaxPartitionDepth=4 --SP_factor=0.8 --budget_alg=0</runcommand>
         <rundir>bin</rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>
